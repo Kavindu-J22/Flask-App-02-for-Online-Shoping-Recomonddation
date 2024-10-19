@@ -1,0 +1,127 @@
+/* General Page Styling */
+.product-list {
+  padding: 2rem;
+  background-color: #f7f9fc; /* Light background for modern look */
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Search Input */
+.search-input {
+  width: 100%;
+  max-width: 500px;
+  padding: 0.8rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.search-input:focus {
+  border-color: #0e4053; /* Material-style focus */
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+  outline: none;
+}
+
+/* Product Count */
+.product-count {
+  font-size: 1.2rem;
+  color: #555;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Product Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+/* Product Card */
+.product-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.product-image-mn {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}
+
+.product-details-mn {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.product-title-mn {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.product-category-mn {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 1rem;
+}
+
+.product-description-mn {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.product-price-mn {
+  font-size: 1.3rem;
+  color: #0e4053;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+/* View Details Button */
+.details-btn {
+  display: inline-block;
+  background-color: #0e4053;
+  color: white;
+  padding: 0.8rem 1.2rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.details-btn:hover {
+  background-color: #14526b;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .search-input {
+    width: 90%;
+  }
+}

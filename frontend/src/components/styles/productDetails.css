@@ -1,0 +1,146 @@
+/* General styling for the Product Details page */
+.product-details {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.product-image {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  margin-bottom: 2rem;
+}
+
+.product-image:hover {
+  transform: scale(1.05);
+}
+
+.product-description {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+  text-align: justify;
+  margin-bottom: 1.5rem;
+  max-width: 800px;
+}
+
+.product-price {
+  font-size: 2rem;
+  color: #0e4053;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.add-to-cart-btn {
+  background-color: #0e4053;
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-bottom: 3rem;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #165770;
+  transform: scale(1.05);
+}
+
+/* Reviews section */
+.reviews-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+.review-product {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.review-title,
+.review-description,
+.review-rating {
+  margin-bottom: 1rem;
+}
+
+.review-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.review-description {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.review-rating {
+  font-size: 1.1rem;
+}
+
+.icon {
+  font-size: 1.5rem;
+  margin-left: 0.5rem;
+}
+
+.recommended {
+  color: #28a745;
+}
+
+.not-recommended {
+  color: #dc3545;
+}
+
+.rating-icon{
+  font-size: 1.5em;
+}
+
+/* Loading and Error Styles */
+.loading-text,
+.error-text {
+  font-size: 1.5rem;
+  color: #ff0000;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .product-title {
+    font-size: 2rem;
+  }
+
+  .product-price {
+    font-size: 1.5rem;
+  }
+
+  .add-to-cart-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .product-description {
+    font-size: 1rem;
+  }
+}
