@@ -7,34 +7,54 @@ const ReviewForm = ({ productId }) => {
   const [reviewText, setReviewText] = useState('');
   const [recommendation, setRecommendation] = useState(null);
   const [feedbackMessage, setFeedbackMessage] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const submitReview = (e) => {
+  const submitReview = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
-    if (recommendation === null) {
-      setFeedbackMessage("Please provide a recommendation.");
+    // Ensure title and review are provided
+    if (!reviewTitle || !reviewText) {
+      setFeedbackMessage("Title and review are required.");
+      setLoading(false);
       return;
     }
 
-    const reviewData = {
-      title: reviewTitle,
-      description: reviewText,
-      rating: recommendation
-    };
-
-    // Send POST request to submit review for the specific product
-    axios.post(`/api/products/${productId}/review`, reviewData)
-      .then(res => {
-        alert('Review successfully added!');
-        setReviewTitle('');  // Reset form fields
-        setReviewText('');
-        setRecommendation(null);
-        setFeedbackMessage('');
-      })
-      .catch(err => {
-        console.error(err);
-        alert('Failed to submit the review.');
+    try {
+      // Make a POST request to the Flask API to get the prediction
+      const response = await axios.post('http://127.0.0.1:5001/predict', {
+        title: reviewTitle,
+        review: reviewText,
       });
+
+      // Get the recommendation from the response
+      const prediction = response.data.prediction;
+
+      // Set the recommendation
+      setRecommendation(prediction);
+
+      const reviewData = {
+        title: reviewTitle,
+        description: reviewText,
+        rating: prediction, // Use the model's prediction as the recommendation
+      };
+
+      // Send POST request to submit review for the specific product
+      await axios.post(`/api/products/${productId}/review`, reviewData);
+      alert('Review successfully added!');
+
+      // Reset form fields
+      setReviewTitle('');
+      setReviewText('');
+      setRecommendation(null);
+      setFeedbackMessage('');
+
+    } catch (error) {
+      console.error(error);
+      alert('Failed to submit the review.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -53,28 +73,10 @@ const ReviewForm = ({ productId }) => {
         placeholder="Describe your experience..."
         required
       />
-      <div className="recommendation-selection">
-        <p>Do you recommend this product?</p>
-
-        <span
-          className={`rating-choice ${recommendation === 1 ? 'selected' : ''}`}
-          onClick={() => setRecommendation(1)}
-          role="button"
-          aria-label="Recommend"
-        >
-          😊 Yes
-        </span>
-        <span
-          className={`rating-choice ${recommendation === 0 ? 'selected' : ''}`}
-          onClick={() => setRecommendation(0)}
-          role="button"
-          aria-label="Not Recommend"
-        >
-          😞 No
-        </span>
-      </div>
       {feedbackMessage && <p className="error-message">{feedbackMessage}</p>}
-      <button type="submit">Submit Review</button>
+      <button type="submit" disabled={loading}>
+        {loading ? 'Submitting...' : 'Submit Review'}
+      </button>
     </form>
   );
 };
